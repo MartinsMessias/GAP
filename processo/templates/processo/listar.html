@@ -1,0 +1,71 @@
+{% extends 'processo/base.html' %}
+
+{% block content %}
+<!-- DataTables -->
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-list"></i>Listagem de Processos
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Nome da parte</th>
+            <th>Assunto</th>
+            <th>Data abertura</th>
+            <th>Caixa</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Número</th>
+            <th>Nome da parte</th>
+            <th>Assunto</th>
+            <th>Data abertura</th>
+            <th>Caixa</th>
+            <th>Ação</th>
+          </tr>
+        </tfoot>
+        <tbody>
+        {% for dado in dados %}
+          <tr>
+            <td>{{ dado.numero_processo }}</td>
+            <td>{{ dado.nome_parte_processo }}</td>
+            <td>{{ dado.assunto_processo }}</td>
+            <td>{{ dado.data_abertura_processo }}</td>
+            <td>{{ dado.numero_caixa_processo }}</td>
+            <td>
+              <a href="exibir/{{ dado.id }}">Exibir</a>
+              <a href="/editar/{{ dado.id }}">Editar</a>
+              <a href="#" data-toggle="modal" data-target="#excluirModal">Excluir</a>
+            </td>
+          </tr>
+        <!-- Excluir Modal-->
+          <div class="modal fade" id="excluirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">Deseja realmente excluir esse processo?</div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                  <a class="btn btn-primary" href="/excluir/{{ dado.id }}">Excluir</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
