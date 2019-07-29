@@ -40,11 +40,11 @@
             <td>
               <a href="exibir/{{ dado.id }}">Exibir</a>
               <a href="/editar/{{ dado.id }}">Editar</a>
-              <a href="#" data-toggle="modal" data-target="#excluirModal">Excluir</a>
+              <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
             </td>
           </tr>
-        <!-- Excluir Modal-->
-          <div class="modal fade" id="excluirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <!-- Excluir Modal-->
+          <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">

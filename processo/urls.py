@@ -14,4 +14,5 @@ urlpatterns = [
     path('buscar/', views.buscar, name='buscar'),
     path('config/', views.config, name='config'),
     path('excluir/<str:id>', views.excluir, name='excluir'),
+    path('accounts/', views.accounts, name='accounts')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
