@@ -1,0 +1,14 @@
+<div class="form-group">
+    {{ field }}
+</div>
+{% if field.errors %}
+    <div class="alert-danger" align="center">
+        {% if small %}<small style="font-size: 10px;">{% endif %}
+        {% for error in field.errors %}
+            {% if forloop.first %}
+            {% else %}, {% endif %}
+            {{ error|striptags }}
+        {% endfor %}
+        {% if small %}</small>{% endif %}
+    </div>
+{% endif %}
