@@ -12,8 +12,3 @@ class ProcessoForm(forms.ModelForm):
                   'data_abertura_processo', 'numero_caixa_processo',
                   'divisao_processo', 'tipo_processo', 'arquivo_processo')
 
-        def _init_(self, *args, **kwargs):
-            for l in self.base_fields:
-                self.base_fields[l].widget.attrs['class'] = '"form-control"'
-
-            super(ProcessoForm, self)._init_(*args, **kwargs)
