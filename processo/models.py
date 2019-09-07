@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Divisao(models.Model):
     nome_divisao = models.CharField(max_length=250, blank=False, null=False)
 
@@ -14,9 +14,12 @@ class TipoDeProcesso(models.Model):
     def __str__(self):
         return self.nome_tipo
 
+
 def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'processos/{0}/{1}/{2}'.format(instance.divisao_processo, instance.tipo_processo, filename)
+    # O arquivo vai ser carregado para MEDIA_ROOT/processos/<nome_usuario>/...
+    return 'processos/{0}/{1}/{2}/{3}'.format(instance.user.username, instance.divisao_processo, instance.tipo_processo,
+                                              filename)
+
 
 class Processo(models.Model):
     numero_processo = models.CharField(max_length=100, blank=False, null=False)
