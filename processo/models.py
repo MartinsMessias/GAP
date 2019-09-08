@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Divisao(models.Model):
@@ -16,8 +17,10 @@ class TipoDeProcesso(models.Model):
 
 
 def user_directory_path(instance, filename):
-    # O arquivo vai ser carregado para MEDIA_ROOT/processos/<nome_usuario>/...
-    return 'processos/{0}/{1}/{2}/{3}'.format(instance.user.username, instance.divisao_processo, instance.tipo_processo,
+    # O arquivo vai ser carregado para MEDIA_ROOT/processos/<divisao>/<tipo>/<num_caixa>/...
+    return 'processos/{0}/{1}/{2}/{3}'.format(instance.divisao_processo,
+                                              instance.tipo_processo,
+                                              instance.numero_caixa_processo,
                                               filename)
 
 
