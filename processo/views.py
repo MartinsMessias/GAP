@@ -65,16 +65,10 @@ def cadastrar(request):
         return render(request, 'processo/cadastrar.html', {'form': form})
 
 
-# @login_required
-# def exibir(request, id):
-#     obj = get_object_or_404(Processo, pk=id)
-#     return render(request, 'processo/listar.html', {'form_ex': obj})
-#
-
 @login_required
 def excluir(request, id):
     obj = get_object_or_404(Processo, pk=id)
-    obj.delete()
+    proc_services.remover_processo(obj)
     messages.info(request, 'Processo removido!')
     return redirect(index)
 

@@ -20,8 +20,8 @@ def cadastrar_processo(new):
 #     return arquivo
 #
 #
-# def remover_arquivo(arquivo):
-#     arquivo.delete()
+def remover_processo(processo):
+    processo.delete()
 #
 #
 # def upload_arquivo(novo):
