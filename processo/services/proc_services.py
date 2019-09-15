@@ -1,6 +1,5 @@
 from ..models import *
 
-
 def cadastrar_processo(new):
     Processo.objects.create(
         numero_processo=new.numero_processo, protocolo_processo=new.protocolo_processo,
@@ -9,12 +8,6 @@ def cadastrar_processo(new):
         divisao_processo=new.divisao_processo, tipo_processo=new.tipo_processo, arquivo_processo=new.arquivo_processo
     )
 
-#
-# def listar_arquivos():
-#     arquivos = FileUDApp.objects.all()
-#     return arquivos
-#
-#
 def busca_processo(id):
     processo = Processo.objects.get(id=id)
     return processo

@@ -77,29 +77,28 @@ def editar(request, id):
     processo_ant = proc_services.busca_processo(id)
     form = ProcessoForm(request.POST or None, instance=processo_ant)
 
-    if not form.is_valid():
-        messages.warning(request, 'Houve um erro!')
-        return render(request, 'processo/editar.html', {'form': form})
+    if form.is_valid():
 
-    nume_proc = form.cleaned_data['numero_processo']
-    prot_proc = form.cleaned_data['protocolo_processo']
-    part_proc = form.cleaned_data['nome_parte_processo']
-    assu_proc = form.cleaned_data['assunto_processo']
-    aber_proc = form.cleaned_data['data_abertura_processo']
-    caix_proc = form.cleaned_data['numero_caixa_processo']
-    divi_proc = form.cleaned_data['divisao_processo']
-    tipo_proc = form.cleaned_data['tipo_processo']
-    arqu_proc = form.cleaned_data['arquivo_processo']
+        nume_proc = form.cleaned_data['numero_processo']
+        prot_proc = form.cleaned_data['protocolo_processo']
+        part_proc = form.cleaned_data['nome_parte_processo']
+        assu_proc = form.cleaned_data['assunto_processo']
+        aber_proc = form.cleaned_data['data_abertura_processo']
+        caix_proc = form.cleaned_data['numero_caixa_processo']
+        divi_proc = form.cleaned_data['divisao_processo']
+        tipo_proc = form.cleaned_data['tipo_processo']
+        arqu_proc = form.cleaned_data['arquivo_processo']
 
-    novo_processo = processo.Processo(numero_processo=nume_proc, protocolo_processo=prot_proc,
-                                      nome_parte_processo=part_proc, assunto_processo=assu_proc,
-                                      data_abertura_processo=aber_proc, numero_caixa_processo=caix_proc,
-                                      divisao_processo=divi_proc, tipo_processo=tipo_proc,
-                                      arquivo_processo=arqu_proc)
+        novo_processo = processo.Processo(numero_processo=nume_proc, protocolo_processo=prot_proc,
+                                          nome_parte_processo=part_proc, assunto_processo=assu_proc,
+                                          data_abertura_processo=aber_proc, numero_caixa_processo=caix_proc,
+                                          divisao_processo=divi_proc, tipo_processo=tipo_proc,
+                                          arquivo_processo=arqu_proc)
 
-    proc_services.editar_processo(processo_ant, novo_processo)
-    messages.info(request, 'Alterações salvas!')
-    return redirect(index)
+        proc_services.editar_processo(processo_ant, new=novo_processo)
+        messages.info(request, 'Alterações salvas!')
+        return redirect(index)
 
+    return render(request, 'processo/editar.html', {'form': form})
 
 
