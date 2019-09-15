@@ -67,27 +67,39 @@ def cadastrar(request):
 
 @login_required
 def excluir(request, id):
-    obj = get_object_or_404(Processo, pk=id)
-    proc_services.remover_processo(obj)
+    proc_services.remover_processo(proc_services.busca_processo(id))
     messages.info(request, 'Processo removido!')
     return redirect(index)
 
 
 @login_required
 def editar(request, id):
-    obj = get_object_or_404(Processo, pk=id)
-    form = ProcessoForm(instance=obj)
+    processo_ant = proc_services.busca_processo(id)
+    form = ProcessoForm(request.POST or None, instance=processo_ant)
 
-    if request.method == 'POST':
-        form = ProcessoForm(request.POST, request.FILES, instance=obj)
+    if not form.is_valid():
+        messages.warning(request, 'Houve um erro!')
+        return render(request, 'processo/editar.html', {'form': form})
 
-        if form.is_valid():
-            form.save()
-            messages.info(request, 'Alterações salvas!')
-            return redirect(index)
-        else:
-            return render(request, 'processo/editar.html', {'form': form, 'obj': obj})
-    else:
-        return render(request, 'processo/editar.html', {'form': form, 'obj': obj})
+    nume_proc = form.cleaned_data['numero_processo']
+    prot_proc = form.cleaned_data['protocolo_processo']
+    part_proc = form.cleaned_data['nome_parte_processo']
+    assu_proc = form.cleaned_data['assunto_processo']
+    aber_proc = form.cleaned_data['data_abertura_processo']
+    caix_proc = form.cleaned_data['numero_caixa_processo']
+    divi_proc = form.cleaned_data['divisao_processo']
+    tipo_proc = form.cleaned_data['tipo_processo']
+    arqu_proc = form.cleaned_data['arquivo_processo']
+
+    novo_processo = processo.Processo(numero_processo=nume_proc, protocolo_processo=prot_proc,
+                                      nome_parte_processo=part_proc, assunto_processo=assu_proc,
+                                      data_abertura_processo=aber_proc, numero_caixa_processo=caix_proc,
+                                      divisao_processo=divi_proc, tipo_processo=tipo_proc,
+                                      arquivo_processo=arqu_proc)
+
+    proc_services.editar_processo(processo_ant, novo_processo)
+    messages.info(request, 'Alterações salvas!')
+    return redirect(index)
+
 
 

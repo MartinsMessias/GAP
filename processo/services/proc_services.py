@@ -15,25 +15,21 @@ def cadastrar_processo(new):
 #     return arquivos
 #
 #
-# def listar_arquivo_id(id):
-#     arquivo = FileUDApp.objects.get(id=id)
-#     return arquivo
-#
-#
+def busca_processo(id):
+    processo = Processo.objects.get(id=id)
+    return processo
+
 def remover_processo(processo):
     processo.delete()
-#
-#
-# def upload_arquivo(novo):
-#     FileUDApp.objects.create(
-#         nome_arquivo=novo.nome_arquivo,
-#         tipo_arquivo=novo.tipo_arquivo,
-#         arquivo=novo.arquivo
-#     )
-#
-#
-# def alterar_arquivo(arquivo, novo):
-#     arquivo.nome_arquivo = novo.nome_arquivo
-#     arquivo.tipo_arquivo = novo.tipo_arquivo
-#     arquivo.arquivo = novo.arquivo
-#     arquivo.save(force_update=True)
+
+def editar_processo(processo_ant, new):
+    processo_ant.numero_processo = new.numero_processo
+    processo_ant.protocolo_processo = new.protocolo_processo
+    processo_ant.nome_parte_processo = new.nome_parte_processo
+    processo_ant.assunto_processo = new.assunto_processo
+    processo_ant.data_abertura_processo = new.data_abertura_processo
+    processo_ant.numero_caixa_processo = new.numero_caixa_processo
+    processo_ant.divisao_processo = new.divisao_processo
+    processo_ant.tipo_processo = new.tipo_processo
+    processo_ant.arquivo_processo = new.arquivo_processo
+    processo_ant.save(force_update=True)
