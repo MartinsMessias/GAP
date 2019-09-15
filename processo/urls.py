@@ -10,7 +10,6 @@ urlpatterns = [
     path('cadastrar/', views.cadastrar, name='cadastrar'),
     path('editar/<str:id>', views.editar, name='editar'),
     # path('exibir/<str:id>', views.exibir, name='exibir'),
-    # path('config/', views.config, name='config'),
     path('excluir/<str:id>', views.excluir, name='excluir'),
     path('accounts/', views.accounts, name='accounts')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -97,6 +97,3 @@ def editar(request, id):
         return render(request, 'processo/editar.html', {'form': form, 'obj': obj})
 
 
-# @login_required
-# def config(request):
-#     return render(request, 'processo/config.html')
