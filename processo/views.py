@@ -65,11 +65,11 @@ def cadastrar(request):
         return render(request, 'processo/cadastrar.html', {'form': form})
 
 
-@login_required
-def exibir(request, id):
-    obj = get_object_or_404(Processo, pk=id)
-    return render(request, 'processo/listar.html', {'form_ex': obj})
-
+# @login_required
+# def exibir(request, id):
+#     obj = get_object_or_404(Processo, pk=id)
+#     return render(request, 'processo/listar.html', {'form_ex': obj})
+#
 
 @login_required
 def excluir(request, id):
@@ -97,6 +97,6 @@ def editar(request, id):
         return render(request, 'processo/editar.html', {'form': form, 'obj': obj})
 
 
-@login_required
-def config(request):
-    return render(request, 'processo/config.html')
+# @login_required
+# def config(request):
+#     return render(request, 'processo/config.html')

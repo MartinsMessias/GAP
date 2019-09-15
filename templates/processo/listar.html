@@ -2,7 +2,7 @@
 <!-- DataTables -->
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fas fa-list"></i>Listagem de Processos
+        <i class="fas fa-list"></i> Listagem de Processos
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -36,8 +36,7 @@
                         <td>{{ dado.data_abertura_processo }}</td>
                         <td>{{ dado.numero_caixa_processo }}</td>
                         <td>
-                            <a href="exibir/{{ dado.id }}">Exibir</a>
-                            <a href="/editar/{{ dado.id }}">Editar</a>
+                            <a href="{% url 'editar' dado.id %}">Editar</a>
                             <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
                             <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}">Exibir</a>
                         </td>
@@ -53,59 +52,12 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="numero_processo">Número do processo</label>
-                                                <input class="form-control" type="text" value="{{ dado.numero_processo }}" disabled>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="protocolo_processo">Número do protocolo</label>
-                                                <input class="form-control" type="text" value="{{ dado.protocolo_processo }}" disabled>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="data_abertura_processo">Data abertura</label>
-                                                <input class="form-control" type="text" value="{{ dado.data_abertura_processo }}" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nome_parte_processo">Nome da parte</label>
-                                            <input class="form-control" type="text" value="{{ dado.nome_parte_processo }}" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="assunto_processo">Assunto</label>
-                                            <input class="form-control" type="text" value="{{ dado.assunto_processo }}" disabled>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-4">
-                                                <label for="numero_caixa_processo">Número da caixa</label>
-                                                <input class="form-control" type="text" value="{{ dado.numero_caixa_processo }}" disabled>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="divisao_processo">Divisão responsável</label>
-                                                <input class="form-control" type="text" value="{{ dado.divisao_processo }}" disabled>
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="tipo_processo">Tipo de processo</label>
-                                                <input class="form-control" type="text" value="{{ dado.tipo_processo }}" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Anexos do processo</label>
-                                                <div class="custom-file">
-                                                    <a class="btn btn-primary" href="{{ dado.arquivo_processo.url }}">Visualizar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% include 'processo/exibir.html' with form=dado %}
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
-                                    {#                                    <a class="btn btn-primary" href="{% url 'editar' dado.id %}">Editar</a>#}
-                                    {#                                    <a class="btn btn-info" value="Editar" href="{% url 'editar' dado.id %}">Editar</a>#}
                                     <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#editarModal{{ dado.id }}">Excluir</a>
+                                    <a class="btn btn-info" href="{% url 'editar' dado.id %}">Editar</a>
                                 </div>
                             </div>
                         </div>
@@ -125,73 +77,6 @@
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                     <a class="btn btn-primary" href="/excluir/{{ dado.id }}">Excluir</a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Editar Modal-->
-                    <div class="modal fade" id="editarModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title" id="exampleModalLabel">Editando {{ dado.numero_processo }}</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="numero_processo">Número do processo</label>
-                                            <input class="form-control" type="text" value="{{ dado.numero_processo }}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="protocolo_processo">Número do protocolo</label>
-                                            <input class="form-control" type="text" value="{{ dado.protocolo_processo }}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="data_abertura_processo">Data abertura</label>
-                                            <input class="form-control" type="text" value="{{ dado.data_abertura_processo }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nome_parte_processo">Nome da parte</label>
-                                        <input class="form-control" type="text" value="{{ dado.nome_parte_processo }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="assunto_processo">Assunto</label>
-                                        <input class="form-control" type="text" value="{{ dado.assunto_processo }}">
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="numero_caixa_processo">Número da caixa</label>
-                                            <input class="form-control" type="text" value="{{ dado.numero_caixa_processo }}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="divisao_processo">Divisão responsável</label>
-                                            <input class="form-control" type="text" value="{{ dado.divisao_processo }}">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="tipo_processo">Tipo de processo</label>
-                                            <input class="form-control" type="text" value="{{ dado.tipo_processo }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>Anexos do processo</label>
-                                            <div class="custom-file">
-                                                <input class="form-control-file" type="file" value="{{ dado.arquivo_processo }}">
-                                                <label class="custom-file-label" for="id_arquivo_processo">Escolher arquivo...</label>
-                                                <div class="invalid-feedback">Arquivo inválido</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                        <input type="submit" class="btn btn-primary" value="Salvar">
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
