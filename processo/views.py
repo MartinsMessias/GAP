@@ -68,7 +68,7 @@ def cadastrar(request):
 @login_required
 def exibir(request, id):
     obj = get_object_or_404(Processo, pk=id)
-    return render(request, 'processo/exibir.html', {'form': obj})
+    return render(request, 'processo/listar.html', {'form_ex': obj})
 
 
 @login_required
