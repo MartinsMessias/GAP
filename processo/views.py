@@ -3,7 +3,7 @@ import os
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import *
 
 from GProcessos import settings
 from .forms import *
@@ -51,6 +51,10 @@ def cadastrar(request):
         divi_proc = form.cleaned_data['divisao_processo']
         tipo_proc = form.cleaned_data['tipo_processo']
         arqu_proc = form.cleaned_data['arquivo_processo']
+
+        if proc_services.verificar_exist(nume_proc=nume_proc):
+            messages.warning(request, 'Já existe um processo com esse número!')
+            return render(request, 'processo/cadastrar.html', {'form': form})
 
         novo_processo = processo.Processo(numero_processo=nume_proc, protocolo_processo=prot_proc,
                                           nome_parte_processo=part_proc, assunto_processo=assu_proc,

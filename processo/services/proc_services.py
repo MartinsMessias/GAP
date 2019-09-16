@@ -31,3 +31,9 @@ def editar_processo(processo_ant, new):
     processo_ant.arquivo_processo = new.arquivo_processo
     processo_ant.save(force_update=True)
 
+def verificar_exist(nume_proc):
+    try:
+        if Processo.objects.get(numero_processo=nume_proc):
+            return True
+    except:
+        return False
