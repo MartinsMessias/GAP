@@ -1,3 +1,6 @@
+import os
+
+from GProcessos import settings
 from ..models import *
 
 def cadastrar_processo(new):
@@ -14,6 +17,7 @@ def busca_processo(id):
 
 def remover_processo(processo):
     processo.delete()
+    os.remove(os.path.join(settings.MEDIA_ROOT, processo.arquivo_processo.name))
 
 def editar_processo(processo_ant, new):
     processo_ant.numero_processo = new.numero_processo
@@ -26,3 +30,4 @@ def editar_processo(processo_ant, new):
     processo_ant.tipo_processo = new.tipo_processo
     processo_ant.arquivo_processo = new.arquivo_processo
     processo_ant.save(force_update=True)
+

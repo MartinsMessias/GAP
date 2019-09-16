@@ -1,8 +1,11 @@
+import os
+
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+from GProcessos import settings
 from .forms import *
 from .models import *
 from .entitys import processo
@@ -75,7 +78,7 @@ def excluir(request, id):
 @login_required
 def editar(request, id):
     processo_ant = proc_services.busca_processo(id)
-    form = ProcessoForm(request.POST or None, instance=processo_ant)
+    form = ProcessoForm(request.POST or None, request.FILES or None, instance=processo_ant)
 
     if form.is_valid():
 
@@ -100,5 +103,3 @@ def editar(request, id):
         return redirect(index)
 
     return render(request, 'processo/editar.html', {'form': form})
-
-
