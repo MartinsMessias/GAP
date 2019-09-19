@@ -24,13 +24,23 @@ def login(request):
 
 @login_required
 def index(request):
-    dados = Processo.objects.all()
+    dados = Processo.objects.all().order_by('criacao_registro')
 
     if not dados:
         messages.info(request, 'Nenhum processo foi encontrado!')
         return render(request, 'processo/index.html')
 
     return render(request, 'processo/index.html', {'dados': dados})
+
+@login_required
+def divisao(request):
+    dados = Divisao.objects.all()
+
+    if not dados:
+        messages.info(request, 'Nenhuma divisão foi encontrada!')
+        return render(request, 'processo/divisoes.html')
+
+    return render(request, 'processo/divisoes.html', {'dados': dados})
 
 
 @login_required
