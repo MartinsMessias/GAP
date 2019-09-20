@@ -109,15 +109,9 @@
             </div>
         </div>
 
-        <!-- MESSAGES-->
+
         <div class="container-fluid">
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+
             <!-- Icon Cards-->
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-3">
@@ -179,12 +173,20 @@
                         <a class="card-footer text-white clearfix small z-1" href="#config/">
                             <span class="float-left"></span>
                             <span class="float-right">
-          <i class="fas fa-angle-right"></i>
-        </span>
+                                <i class="fas fa-angle-right"></i>
+                            </span>
                         </a>
                     </div>
                 </div>
             </div>
+            <!-- MESSAGES-->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} style="list-style: none;">{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             {% block content %}{% endblock %}
 
         </div>
@@ -213,6 +215,14 @@
         <!-- Demo scripts for this page-->
         <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
         <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+        <script>
+            $(document).ready(function() {
+                // messages timeout for 10 sec
+                setTimeout(function() {
+                    $('.messages').slideToggle('slow');
+                }, 5000); // <-- time in milliseconds, 1000 =  1 sec
+            });
+        </script>
 
 </body>
 
