@@ -116,9 +116,9 @@ class DivisaoProcesso:
         self.__nome_divisao = divisao
 
     @property
-    def nome_divisao_processo(self):
+    def nome_divisao(self):
         return self.__nome_divisao
 
-    @nome_divisao_processo.setter
-    def nome_divisao_processo(self, nomedivisao):
-        self.__nome_divisao = nomedivisao
+    @nome_divisao.setter
+    def nome_divisao(self, new_nome_divisao):
+        self.__nome_divisao = new_nome_divisao
