@@ -120,7 +120,7 @@ def editar(request, id):
 
 
 @login_required
-def editar_div(request, id):
+def editar_divisao(request, id):
     div_ant = proc_services.busca_div(id)
     form = ProcessoForm(request.POST or None, request.FILES or None, instance=div_ant)
 
