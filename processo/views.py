@@ -147,3 +147,28 @@ def excluir_div(request, id):
     proc_services.remover_divisao(proc_services.busca_div(id))
     messages.info(request, 'Divisão removida!')
     return redirect(divisao)
+
+
+@login_required
+def cadastrar_div(request):
+    if request.method == 'POST':
+        form = DivisaoForm(request.POST, request.FILES)
+
+        if not form.is_valid():
+            messages.warning(request, 'Houve um erro!')
+            return render(request, 'processo/cadastrar_div.html', {'form': form})
+
+        nome_divisao = form.cleaned_data['nome_divisao']
+
+        if proc_services.verificar_exist_div(div=nome_divisao):
+            messages.warning(request, 'Já existe uma divisão com esse nome!')
+            return render(request, 'processo/cadastrar_div.html', {'form': form})
+
+        nova_div = processo.DivisaoProcesso(nome_divisao=nome_divisao)
+        proc_services.cadastrar_processo(nova_div)
+        messages.success(request, 'Divisão salva!')
+        return redirect(index)
+
+    else:
+        form = DivisaoForm()
+        return render(request, 'processo/cadastrar_div.html', {'form': form})
