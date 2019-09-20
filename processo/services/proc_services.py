@@ -31,9 +31,26 @@ def editar_processo(processo_ant, new):
     processo_ant.arquivo_processo = new.arquivo_processo
     processo_ant.save(force_update=True)
 
-def verificar_exist(nume_proc):
+def verificar_exist_numproc(nume_proc):
     try:
         if Processo.objects.get(numero_processo=nume_proc):
             return True
     except:
         return False
+
+
+def verificar_exist_numprot(nume_prot):
+    try:
+        if Processo.objects.get(numero_processo=nume_prot):
+            return True
+    except:
+        return False
+
+
+def editar_divisao(div_ant, new):
+    div_ant.nome_divisao = new.nome_divisao
+    div_ant.save(force_update=True)
+
+def busca_div(id):
+    div = Divisao.objects.get(id=id)
+    return div
