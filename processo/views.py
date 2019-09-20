@@ -156,7 +156,7 @@ def cadastrar_div(request):
 
         if not form.is_valid():
             messages.warning(request, 'Houve um erro!')
-            return render(request, 'processo/cadastrar_div.html', {'form': form})
+            return render(request, 'processo/editar_div.html', {'form': form})
 
         nome_divisao = form.cleaned_data['nome_divisao']
 
@@ -171,4 +171,4 @@ def cadastrar_div(request):
 
     else:
         form = DivisaoForm()
-        return render(request, 'processo/cadastrar_div.html', {'form': form})
+        return render(request, 'processo/editar_div.html', {'form': form})

@@ -10,6 +10,7 @@ urlpatterns = [
                   path('divisao/', views.divisao, name='divisao'),
                   path('editar_divisao/<str:id>', views.editar_divisao, name='editar_divisao'),
                   path('excluir_div/<str:id>', views.excluir_div, name='excluir_divisao'),
+                  path('cadastrar_div/', views.cadastrar_div, name='cadastrar_div'),
                   path('cadastrar/', views.cadastrar, name='cadastrar'),
                   path('editar/<str:id>', views.editar, name='editar'),
                   # path('exibir/<str:id>', views.exibir, name='exibir'),
