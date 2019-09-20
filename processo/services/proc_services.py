@@ -3,6 +3,7 @@ import os
 from GProcessos import settings
 from ..models import *
 
+
 def cadastrar_processo(new):
     Processo.objects.create(
         numero_processo=new.numero_processo, protocolo_processo=new.protocolo_processo,
@@ -11,13 +12,16 @@ def cadastrar_processo(new):
         divisao_processo=new.divisao_processo, tipo_processo=new.tipo_processo, arquivo_processo=new.arquivo_processo
     )
 
+
 def busca_processo(id):
     processo = Processo.objects.get(id=id)
     return processo
 
+
 def remover_processo(processo):
     processo.delete()
     os.remove(os.path.join(settings.MEDIA_ROOT, processo.arquivo_processo.name))
+
 
 def editar_processo(processo_ant, new):
     processo_ant.numero_processo = new.numero_processo
@@ -30,6 +34,7 @@ def editar_processo(processo_ant, new):
     processo_ant.tipo_processo = new.tipo_processo
     processo_ant.arquivo_processo = new.arquivo_processo
     processo_ant.save(force_update=True)
+
 
 def verificar_exist_numproc(nume_proc):
     try:
@@ -47,13 +52,23 @@ def verificar_exist_numprot(nume_prot):
         return False
 
 
+def verificar_exist_pro_div(div):
+    try:
+        if Processo.objects.get(divisao_processo=div):
+            return True
+    except:
+        return False
+
+
 def editar_divisao(div_ant, new):
     div_ant.nome_divisao = new.nome_divisao
     div_ant.save(force_update=True)
 
+
 def busca_div(id):
     div = Divisao.objects.get(id=id)
     return div
+
 
 def remover_divisao(divisao):
     divisao.delete()

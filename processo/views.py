@@ -137,6 +137,8 @@ def editar_divisao(request, id):
 
 @login_required
 def excluir_div(request, id):
+    if proc_services.verificar_exist_pro_div(proc_services.busca_div(id)):
+        messages.warning(request, 'Você não pode remover essa divisão! Contém processos!')
     proc_services.remover_divisao(proc_services.busca_div(id))
     messages.info(request, 'Divisão removida!')
     return redirect(divisao)
