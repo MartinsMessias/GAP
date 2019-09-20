@@ -54,3 +54,6 @@ def editar_divisao(div_ant, new):
 def busca_div(id):
     div = Divisao.objects.get(id=id)
     return div
+
+def remover_divisao(divisao):
+    divisao.delete()

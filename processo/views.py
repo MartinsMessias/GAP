@@ -133,3 +133,10 @@ def editar_divisao(request, id):
         messages.info(request, 'Alterações salvas!')
         return redirect(divisao)
     return render(request, 'processo/editar_div.html', {'form': form})
+
+
+@login_required
+def excluir_div(request, id):
+    proc_services.remover_divisao(proc_services.busca_div(id))
+    messages.info(request, 'Divisão removida!')
+    return redirect(divisao)
