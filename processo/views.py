@@ -162,9 +162,9 @@ def cadastrar_div(request):
 
         if proc_services.verificar_exist_div(div=nome_divisao):
             messages.warning(request, 'Já existe uma divisão com esse nome!')
-            return render(request, 'processo/cadastrar_div.html', {'form': form})
+            return render(request, 'processo/editar_div.html', {'form': form})
 
-        nova_div = processo.DivisaoProcesso(nome_divisao=nome_divisao)
+        nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
         proc_services.cadastrar_processo(nova_div)
         messages.success(request, 'Divisão salva!')
         return redirect(index)
