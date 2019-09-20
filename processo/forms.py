@@ -4,7 +4,6 @@ from .models import *
 
 
 class ProcessoForm(forms.ModelForm):
-
     class Meta:
         model = Processo
         fields = ('numero_processo', 'protocolo_processo',
@@ -12,3 +11,8 @@ class ProcessoForm(forms.ModelForm):
                   'data_abertura_processo', 'numero_caixa_processo',
                   'divisao_processo', 'tipo_processo', 'arquivo_processo')
 
+
+class DivisaoForm(forms.ModelForm):
+    class Meta:
+        model = Divisao
+        fields = ('nome_divisao',)

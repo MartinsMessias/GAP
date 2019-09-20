@@ -45,7 +45,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        {% include 'processo/exibir.html' with form=dado %}
+                                        {% include 'processo/editar_div.html' with form=dado %}
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
@@ -55,24 +55,24 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Excluir Modal-->
-                        <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">Deseja realmente excluir esse processo?</div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                        <a class="btn btn-primary" href="/excluir/{{ dado.id }}">Excluir</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{#                        <!-- Excluir Modal-->#}
+{#                        <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+{#                            <div class="modal-dialog modal-dialog-centered" role="document">#}
+{#                                <div class="modal-content">#}
+{#                                    <div class="modal-header bg-primary text-white">#}
+{#                                        <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>#}
+{#                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">#}
+{#                                            <span aria-hidden="true">×</span>#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                    <div class="modal-body">Deseja realmente excluir esse processo?</div>#}
+{#                                    <div class="modal-footer">#}
+{#                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>#}
+{#                                        <a class="btn btn-primary" href="/excluir/{{ dado.id }}">Excluir</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
                     {% endfor %}
                     </tbody>
                 </table>

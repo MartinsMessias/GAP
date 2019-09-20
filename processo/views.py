@@ -122,12 +122,12 @@ def editar(request, id):
 @login_required
 def editar_divisao(request, id):
     div_ant = proc_services.busca_div(id)
-    form = ProcessoForm(request.POST or None, request.FILES or None, instance=div_ant)
+    form = DivisaoForm(request.POST or None, request.FILES or None, instance=div_ant)
 
     if form.is_valid():
         nome_divisao = form.cleaned_data['nome_divisao']
 
-        nova_div = divisao.Divisao(nome_divisao=nome_divisao)
+        nova_div = processo.DivisaoProcesso(nome_divisao_processo=nome_divisao)
 
         proc_services.editar_divisao(div_ant, new=nova_div)
         messages.info(request, 'Alterações salvas!')
