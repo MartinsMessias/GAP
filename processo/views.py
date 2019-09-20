@@ -63,8 +63,12 @@ def cadastrar(request):
         tipo_proc = form.cleaned_data['tipo_processo']
         arqu_proc = form.cleaned_data['arquivo_processo']
 
-        if proc_services.verificar_exist(nume_proc=nume_proc):
+        if proc_services.verificar_exist_numproc(nume_proc=nume_proc):
             messages.warning(request, 'Já existe um processo com esse número!')
+            return render(request, 'processo/cadastrar.html', {'form': form})
+
+        if proc_services.verificar_exist_numprot(nume_prot=prot_proc):
+            messages.warning(request, 'Já existe um processo com esse protocolo!')
             return render(request, 'processo/cadastrar.html', {'form': form})
 
         novo_processo = processo.Processo(numero_processo=nume_proc, protocolo_processo=prot_proc,
@@ -138,7 +142,8 @@ def editar_divisao(request, id):
 @login_required
 def excluir_div(request, id):
     if proc_services.verificar_exist_pro_div(proc_services.busca_div(id)):
-        messages.warning(request, 'Você não pode remover essa divisão! Contém processos!')
+        messages.warning(request, 'Você não pode remover essa divisão! Ela contém processos cadastrados!')
+        return redirect(divisao)
     proc_services.remover_divisao(proc_services.busca_div(id))
     messages.info(request, 'Divisão removida!')
     return redirect(divisao)
