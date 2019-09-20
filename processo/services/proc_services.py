@@ -59,6 +59,7 @@ def verificar_exist_pro_div(div):
     except:
         return False
 
+
 def verificar_exist_div(div):
     try:
         if Divisao.objects.get(nome_divisao=div):
@@ -79,3 +80,7 @@ def busca_div(id):
 
 def remover_divisao(divisao):
     divisao.delete()
+
+
+def cadastrar_div(new):
+    Divisao.objects.create(nome_divisao=new.nome_divisao)

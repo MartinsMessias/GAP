@@ -165,7 +165,7 @@ def cadastrar_div(request):
             return render(request, 'processo/editar_div.html', {'form': form})
 
         nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
-        proc_services.cadastrar_processo(nova_div)
+        proc_services.cadastrar_div(nova_div)
         messages.success(request, 'Divisão salva!')
         return redirect(index)
 
