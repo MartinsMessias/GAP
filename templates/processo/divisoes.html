@@ -29,7 +29,7 @@
                             <td>{{ dado.id }}</td>
                             <td>{{ dado.nome_divisao }}</td>
                             <td>
-                                <a href="{% url 'editar' dado.id %}">Editar</a>
+                                <a href="{% url 'editar_divisao' dado.id %}">Editar</a>
                                 <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
                                 <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}">Exibir</a>
                             </td>
