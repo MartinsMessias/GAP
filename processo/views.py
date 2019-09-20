@@ -167,7 +167,7 @@ def cadastrar_div(request):
         nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
         proc_services.cadastrar_div(nova_div)
         messages.success(request, 'Divisão salva!')
-        return redirect(index)
+        return redirect(divisao)
 
     else:
         form = DivisaoForm()

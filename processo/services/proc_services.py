@@ -62,7 +62,9 @@ def verificar_exist_pro_div(div):
 
 def verificar_exist_div(div):
     try:
-        if Divisao.objects.get(nome_divisao=div):
+        v1 = str(Divisao.objects.get(nome_divisao=div)).upper()
+        v2 = str(div).upper()
+        if v1 == v2:
             return True
     except:
         return False
