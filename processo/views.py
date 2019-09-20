@@ -127,9 +127,9 @@ def editar_divisao(request, id):
     if form.is_valid():
         nome_divisao = form.cleaned_data['nome_divisao']
 
-        nova_div = processo.DivisaoProcesso(new_nome_divisao=nome_divisao)
+        nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
 
         proc_services.editar_divisao(div_ant, new=nova_div)
         messages.info(request, 'Alterações salvas!')
-        return redirect(index)
+        return redirect(divisao)
     return render(request, 'processo/editar_div.html', {'form': form})
