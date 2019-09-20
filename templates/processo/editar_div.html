@@ -1,13 +1,13 @@
-{#{% extends 'processo/base.html' %}#}
+{% extends 'processo/base.html' %}
 {% load tags %}
 
-{#{% block content %}#}
+{% block content %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="nome_divisao">Nome da divisão</label>
-                {{ form.nome_divisao | addclass:'form-control' }}
+                {{ form.nome_divisao }}
             </div>
         </div>
         <input type="submit" class="btn btn-primary" value="Salvar">

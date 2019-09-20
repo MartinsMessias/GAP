@@ -31,48 +31,26 @@
                             <td>
                                 <a href="{% url 'editar_divisao' dado.id %}">Editar</a>
                                 <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}">Exibir</a>
                             </td>
                         </tr>
-                        <!-- Exibir Modal-->
-                        <div class="modal fade" id="exibirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
+                        <!-- Excluir Modal-->
+                        <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{ dado.nome_parte_processo }} / {{ dado.numero_processo }}</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        {% include 'processo/editar_div.html' with form=dado %}
-                                    </div>
+                                    <div class="modal-body">Deseja realmente excluir essa divisão?</div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
-                                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                                        <a class="btn btn-info" href="{% url 'editar' dado.id %}">Editar</a>
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-primary" href="/excluir_div/{{ dado.id }}">Excluir</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-{#                        <!-- Excluir Modal-->#}
-{#                        <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-{#                            <div class="modal-dialog modal-dialog-centered" role="document">#}
-{#                                <div class="modal-content">#}
-{#                                    <div class="modal-header bg-primary text-white">#}
-{#                                        <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>#}
-{#                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">#}
-{#                                            <span aria-hidden="true">×</span>#}
-{#                                        </button>#}
-{#                                    </div>#}
-{#                                    <div class="modal-body">Deseja realmente excluir esse processo?</div>#}
-{#                                    <div class="modal-footer">#}
-{#                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>#}
-{#                                        <a class="btn btn-primary" href="/excluir/{{ dado.id }}">Excluir</a>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
                     {% endfor %}
                     </tbody>
                 </table>
