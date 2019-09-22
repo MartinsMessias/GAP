@@ -69,7 +69,7 @@ def verificar_exist_pro_tipo(tipo):
 def verificar_exist_div(div):
     try:
         tipo_a = str(div).upper().replace(" ", "")
-        tipo_b = TipoDeProcesso.objects.all().only('nome_div')
+        tipo_b = Divisao.objects.all().only('nome_divisao')
 
         for value in tipo_b:
             b = str(value).upper().replace(" ", "")
