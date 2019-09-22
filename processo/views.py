@@ -34,17 +34,6 @@ def index(request):
 
 
 @login_required
-def divisao(request):
-    dados = Divisao.objects.all()
-
-    if not dados:
-        messages.info(request, 'Nenhuma divisão foi encontrada!')
-        return render(request, 'processo/divisoes.html')
-
-    return render(request, 'processo/divisoes.html', {'dados': dados})
-
-
-@login_required
 def cadastrar(request):
     if request.method == 'POST':
         form = ProcessoForm(request.POST, request.FILES)
@@ -127,6 +116,17 @@ def editar(request, id):
 
 
 @login_required
+def divisao(request):
+    dados = Divisao.objects.all()
+
+    if not dados:
+        messages.info(request, 'Nenhuma divisão foi encontrada!')
+        return render(request, 'processo/divisoes.html')
+
+    return render(request, 'processo/divisoes.html', {'dados': dados})
+
+
+@login_required
 def editar_divisao(request, id):
     div_ant = proc_services.busca_div(id)
     form = DivisaoForm(request.POST or None, request.FILES or None, instance=div_ant)
@@ -184,3 +184,75 @@ def cadastrar_div(request):
         form = DivisaoForm()
 
         return render(request, 'processo/editar_div.html', {'form': form})
+
+
+@login_required
+def tipo(request):
+    dados = TipoDeProcesso.objects.all()
+
+    if not dados:
+        messages.info(request, 'Nenhum tipo foi encontrado!')
+        return render(request, 'processo/divisoes.html')
+
+    return render(request, 'processo/divisoes.html', {'dados': dados})
+
+
+@login_required
+def editar_tipo(request, id):
+    tipo_ant = proc_services.busca_tipo(id)
+    form = TipoForm(request.POST or None, request.FILES or None, instance=tipo_ant)
+
+    if form.is_valid():
+        nome_tipo = form.cleaned_data['nome_tipo']
+
+        novo_tipo = processo.TipoProcesso(tipo=nome_tipo)
+
+        proc_services.editar_tipo(tipo_ant, new=novo_tipo)
+        messages.info(request, 'Alterações salvas!')
+
+        return redirect(tipo)
+
+    return render(request, 'processo/editar_div.html', {'form': form})
+
+
+@login_required
+def excluir_tipo(request, id):
+    if proc_services.verificar_exist_pro_tipo(proc_services.busca_tipo(id)):
+        messages.warning(request, 'Você não pode remover esse tipo! Ela contém processos cadastrados!')
+
+        return redirect(tipo)
+
+    proc_services.remover_tipo(proc_services.busca_tipo(id))
+    messages.info(request, 'Tipo removido!')
+
+    return redirect(tipo)
+
+
+@login_required
+def cadastrar_tipo(request):
+    if request.method == 'POST':
+        form = TipoForm(request.POST, request.FILES)
+
+        if not form.is_valid():
+            messages.warning(request, 'Houve um erro!')
+
+            return render(request, 'processo/editar_div.html', {'form': form})
+
+        nome_tipo = form.cleaned_data['nome_tipo']
+
+        if proc_services.verificar_exist_tipo(tipo=nome_tipo):
+            messages.warning(request, 'Já existe um tipo com esse nome!')
+
+            return render(request, 'processo/editar_div.html', {'form': form})
+
+        novo_tipo = processo.TipoProcesso(tipo=nome_tipo)
+        proc_services.cadastrar_tipo(novo_tipo)
+        messages.success(request, 'Tipo salvo!')
+
+        return redirect(tipo)
+
+    else:
+        form = TipoForm()
+
+        return render(request, 'processo/editar_div.html', {'form': form})
+

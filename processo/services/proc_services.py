@@ -74,19 +74,41 @@ def verificar_exist_div(div):
         return False
 
 
-def editar_divisao(div_ant, new):
-    div_ant.nome_divisao = new.nome_divisao
-    div_ant.save(force_update=True)
+def verificar_exist_pro_tipo(tipo):
+    try:
+        if TipoDeProcesso.objects.get(tipo_processo=tipo):
+            return True
+    except:
+        return False
 
 
-def busca_div(id):
-    div = Divisao.objects.get(id=id)
-    return div
+def verificar_exist_tipo(tipo):
+    try:
+        try:
+            tipo = str(tipo).lower()
+            if TipoDeProcesso.objects.get(nome_tipo=tipo):
+                return True
+        except:
+            tipo = str(tipo).upper()
+            if TipoDeProcesso.objects.get(nome_tipo=tipo):
+                return True
+    except:
+        return False
 
 
-def remover_divisao(divisao):
-    divisao.delete()
+def editar_tipo(tipo_ant, new):
+    tipo_ant.nome_tipo = new.nome_tipo
+    tipo_ant.save(force_update=True)
 
 
-def cadastrar_div(new):
-    Divisao.objects.create(nome_divisao=new.nome_divisao)
+def busca_tipo(id):
+    tipo = TipoDeProcesso.objects.get(id=id)
+    return tipo
+
+
+def remover_tipo(tipo):
+    tipo.delete()
+
+
+def cadastrar_tipo(new):
+    TipoDeProcesso.objects.create(nome_tipo=new.nome_tipo)
