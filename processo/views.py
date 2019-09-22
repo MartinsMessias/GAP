@@ -192,9 +192,9 @@ def tipo(request):
 
     if not dados:
         messages.info(request, 'Nenhum tipo foi encontrado!')
-        return render(request, 'processo/divisoes.html')
+        return render(request, 'processo/tipos.html')
 
-    return render(request, 'processo/divisoes.html', {'dados': dados})
+    return render(request, 'processo/tipos.html', {'dados': dados})
 
 
 @login_required
@@ -212,7 +212,7 @@ def editar_tipo(request, id):
 
         return redirect(tipo)
 
-    return render(request, 'processo/editar_div.html', {'form': form})
+    return render(request, 'processo/editar_tipo.html', {'form': form})
 
 
 @login_required
@@ -236,14 +236,14 @@ def cadastrar_tipo(request):
         if not form.is_valid():
             messages.warning(request, 'Houve um erro!')
 
-            return render(request, 'processo/editar_div.html', {'form': form})
+            return render(request, 'processo/editar_tipo.html', {'form': form})
 
         nome_tipo = form.cleaned_data['nome_tipo']
 
         if proc_services.verificar_exist_tipo(tipo=nome_tipo):
             messages.warning(request, 'Já existe um tipo com esse nome!')
 
-            return render(request, 'processo/editar_div.html', {'form': form})
+            return render(request, 'processo/editar_tipo.html', {'form': form})
 
         novo_tipo = processo.TipoProcesso(tipo=nome_tipo)
         proc_services.cadastrar_tipo(novo_tipo)
@@ -254,5 +254,5 @@ def cadastrar_tipo(request):
     else:
         form = TipoForm()
 
-        return render(request, 'processo/editar_div.html', {'form': form})
+        return render(request, 'processo/editar_tipo.html', {'form': form})
 
