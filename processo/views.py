@@ -84,6 +84,7 @@ def cadastrar(request):
     else:
 
         form = ProcessoForm()
+
         return render(request, 'processo/cadastrar.html', {'form': form})
 
 
@@ -91,6 +92,7 @@ def cadastrar(request):
 def excluir(request, id):
     proc_services.remover_processo(proc_services.busca_processo(id))
     messages.info(request, 'Processo removido!')
+
     return redirect(index)
 
 
@@ -118,6 +120,7 @@ def editar(request, id):
 
         proc_services.editar_processo(processo_ant, new=novo_processo)
         messages.info(request, 'Alterações salvas!')
+
         return redirect(index)
 
     return render(request, 'processo/editar.html', {'form': form})
@@ -135,7 +138,9 @@ def editar_divisao(request, id):
 
         proc_services.editar_divisao(div_ant, new=nova_div)
         messages.info(request, 'Alterações salvas!')
+
         return redirect(divisao)
+
     return render(request, 'processo/editar_div.html', {'form': form})
 
 
@@ -143,9 +148,12 @@ def editar_divisao(request, id):
 def excluir_div(request, id):
     if proc_services.verificar_exist_pro_div(proc_services.busca_div(id)):
         messages.warning(request, 'Você não pode remover essa divisão! Ela contém processos cadastrados!')
+
         return redirect(divisao)
+
     proc_services.remover_divisao(proc_services.busca_div(id))
     messages.info(request, 'Divisão removida!')
+
     return redirect(divisao)
 
 
@@ -156,19 +164,23 @@ def cadastrar_div(request):
 
         if not form.is_valid():
             messages.warning(request, 'Houve um erro!')
+
             return render(request, 'processo/editar_div.html', {'form': form})
 
         nome_divisao = form.cleaned_data['nome_divisao']
 
         if proc_services.verificar_exist_div(div=nome_divisao):
             messages.warning(request, 'Já existe uma divisão com esse nome!')
+
             return render(request, 'processo/editar_div.html', {'form': form})
 
         nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
         proc_services.cadastrar_div(nova_div)
         messages.success(request, 'Divisão salva!')
+
         return redirect(divisao)
 
     else:
         form = DivisaoForm()
+
         return render(request, 'processo/editar_div.html', {'form': form})
