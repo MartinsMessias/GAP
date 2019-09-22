@@ -205,6 +205,9 @@ def editar_tipo(request, id):
     if form.is_valid():
         nome_tipo = form.cleaned_data['nome_tipo']
 
+        if proc_services.verificar_exist_tipo(tipo=nome_tipo):
+            messages.warning(request, 'Já existe um tipo com esse nome!')
+
         novo_tipo = processo.TipoProcesso(tipo=nome_tipo)
 
         proc_services.editar_tipo(tipo_ant, new=novo_tipo)
