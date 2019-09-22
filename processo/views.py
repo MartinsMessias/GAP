@@ -134,6 +134,11 @@ def editar_divisao(request, id):
     if form.is_valid():
         nome_divisao = form.cleaned_data['nome_divisao']
 
+        if proc_services.verificar_exist_div(div=nome_divisao):
+            messages.warning(request, 'Já existe uma divisão com esse nome!')
+
+            return render(request, 'processo/editar_div.html', {'form': form})
+
         nova_div = processo.DivisaoProcesso(divisao=nome_divisao)
 
         proc_services.editar_divisao(div_ant, new=nova_div)
