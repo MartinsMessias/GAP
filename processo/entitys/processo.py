@@ -122,3 +122,17 @@ class DivisaoProcesso:
     @nome_divisao.setter
     def nome_divisao(self, new_nome_divisao):
         self.__nome_divisao = new_nome_divisao
+
+# -----------------
+class TipoProcesso:
+
+    def __init__(self, tipo):
+        self.__nome_tipo = tipo
+
+    @property
+    def nome_tipo(self):
+        return self.__nome_tipo
+
+    @nome_tipo.setter
+    def nome_tipo(self, new_nome_tipo):
+        self.__nome_tipo = new_nome_tipo
