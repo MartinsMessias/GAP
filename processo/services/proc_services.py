@@ -66,16 +66,15 @@ def verificar_exist_pro_tipo(tipo):
     except:
         return False
 
-
 def verificar_exist_div(div):
     try:
-        try:
-            div = str(div).lower().replace(" ", "")
-            if Divisao.objects.get(nome_divisao=div):
-                return True
-        except:
-            div = str(div).upper().replace(" ", "")
-            if Divisao.objects.get(nome_divisao=div):
+        tipo_a = str(div).upper().replace(" ", "")
+        tipo_b = TipoDeProcesso.objects.all().only('nome_div')
+
+        for value in tipo_b:
+            b = str(value).upper().replace(" ", "")
+
+            if tipo_a == b:
                 return True
     except:
         return False
