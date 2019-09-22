@@ -70,11 +70,11 @@ def verificar_exist_pro_tipo(tipo):
 def verificar_exist_div(div):
     try:
         try:
-            div = str(div).lower()
+            div = str(div).lower().strip(' ')
             if Divisao.objects.get(nome_divisao=div):
                 return True
         except:
-            div = str(div).upper()
+            div = str(div).upper().strip(' ')
             if Divisao.objects.get(nome_divisao=div):
                 return True
     except:
@@ -84,11 +84,11 @@ def verificar_exist_div(div):
 def verificar_exist_tipo(tipo):
     try:
         try:
-            tipo = str(tipo).lower()
+            tipo = str(tipo).lower().strip(' ')
             if TipoDeProcesso.objects.get(nome_tipo=tipo):
                 return True
         except:
-            tipo = str(tipo).upper()
+            tipo = str(tipo).upper().strip(' ')
             if TipoDeProcesso.objects.get(nome_tipo=tipo):
                 return True
     except:

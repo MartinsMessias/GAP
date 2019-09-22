@@ -217,7 +217,7 @@ def editar_tipo(request, id):
 
 @login_required
 def excluir_tipo(request, id):
-    if proc_services.verificar_exist_tipo(id):
+    if proc_services.verificar_exist_pro_tipo(id):
         messages.warning(request, 'Você não pode remover esse tipo! Ela contém processos cadastrados!')
 
         return redirect(tipo)
