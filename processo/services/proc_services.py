@@ -59,6 +59,13 @@ def verificar_exist_pro_div(div):
     except:
         return False
 
+def verificar_exist_pro_tipo(tipo):
+    try:
+        if Processo.objects.get(tipo_processo=tipo):
+            return True
+    except:
+        return False
+
 
 def verificar_exist_div(div):
     try:
