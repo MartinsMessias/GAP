@@ -16,3 +16,8 @@ class DivisaoForm(forms.ModelForm):
     class Meta:
         model = Divisao
         fields = ('nome_divisao',)
+
+class TipoForm(forms.ModelForm):
+    class Meta:
+        model = TipoDeProcesso
+        fields = ('nome_tipo',)
