@@ -1,0 +1,15 @@
+{% extends 'processo/base.html' %}
+{% load tags %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="card-header">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="nome_divisao">Nome do tipo de processo</label>
+                {{ form.nome_tipo }}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Salvar">
+    </form>
+{% endblock %}

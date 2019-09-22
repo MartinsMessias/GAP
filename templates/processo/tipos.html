@@ -1,0 +1,63 @@
+{% extends 'processo/base.html' %}
+{% load tags %}
+{% block content %}
+    <!-- DataTables -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-list"></i> Listagem de Tipos de Processo
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Ação</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for dado in dados %}
+                        <tr>
+                            <td>{{ dado.id }}</td>
+                            <td>{{ dado.nome_tipo }}</td>
+                            <td>
+                                <a href="{% url 'editar_tipo' dado.id %}">Editar</a>
+                                <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
+                            </td>
+                        </tr>
+                        <!-- Excluir Modal-->
+                        <div class="modal fade" id="excluirModal{{ dado.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Deseja realmente excluir esse tipo?</div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-primary" href="{% url 'excluir_tipo' dado.id %}">Excluir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

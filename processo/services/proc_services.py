@@ -96,6 +96,24 @@ def verificar_exist_tipo(tipo):
         return False
 
 
+def editar_divisao(div_ant, new):
+    div_ant.nome_divisao = new.nome_divisao
+    div_ant.save(force_update=True)
+
+
+def busca_div(id):
+    div = Divisao.objects.get(id=id)
+    return div
+
+
+def remover_divisao(divisao):
+    divisao.delete()
+
+
+def cadastrar_div(new):
+    Divisao.objects.create(nome_divisao=new.nome_divisao)
+
+
 def editar_tipo(tipo_ant, new):
     tipo_ant.nome_tipo = new.nome_tipo
     tipo_ant.save(force_update=True)
