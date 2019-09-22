@@ -61,7 +61,7 @@ def verificar_exist_pro_div(div):
 
 def verificar_exist_pro_tipo(tipo):
     try:
-        if Processo.objects.get(tipo_processo=tipo):
+        if Processo.objects.get(tipo_processo=busca_tipo(tipo)):
             return True
     except:
         return False
@@ -77,14 +77,6 @@ def verificar_exist_div(div):
             div = str(div).upper()
             if Divisao.objects.get(nome_divisao=div):
                 return True
-    except:
-        return False
-
-
-def verificar_exist_pro_tipo(tipo):
-    try:
-        if TipoDeProcesso.objects.get(tipo_processo=tipo):
-            return True
     except:
         return False
 
@@ -132,7 +124,7 @@ def busca_tipo(id):
 
 
 def remover_tipo(tipo):
-    tipo.delete()
+    busca_tipo(tipo).delete()
 
 
 def cadastrar_tipo(new):
