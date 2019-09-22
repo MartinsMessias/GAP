@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 
 class Divisao(models.Model):
-    nome_divisao = models.CharField(max_length=250, blank=False, null=False)
+    nome = models.CharField(max_length=250, blank=False, null=False)
 
     def __str__(self):
-        return self.nome_divisao
+        return self.nome
 
 
 class TipoDeProcesso(models.Model):
-    nome_tipo = models.CharField(max_length=120, blank=False, null=False)
+    nome = models.CharField(max_length=120, blank=False, null=False)
 
     def __str__(self):
         return self.nome_tipo
