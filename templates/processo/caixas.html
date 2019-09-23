@@ -1,0 +1,10 @@
+{% load tags %}
+{#{{ caixas|filtre: caixas.id }}#}
+{#{% for caixa in caixas %}#}
+{#    {% for proc in caixa %}#}
+{#        {{ proc }}#}
+{#    {% endfor %}#}
+{#{% endfor %}#}
+{% for key, value in caixas.items %}
+    {{ key }} - {{ value }}
+{% endfor %}

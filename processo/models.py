@@ -38,4 +38,4 @@ class Processo(models.Model):
     modificacao_registro = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.assunto_processo
+        return str(self.numero_caixa_processo)
