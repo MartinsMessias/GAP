@@ -266,3 +266,9 @@ def cadastrar_tipo(request):
 
         return render(request, 'processo/editar_tipo.html', {'form': form})
 
+
+
+@login_required
+def caixas(request):
+    caixas = Processo.objects.all().only('numero_caixa_processo')
+    return render(request, 'processo/caixas.html', {'caixas':caixas})

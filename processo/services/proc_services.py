@@ -59,12 +59,14 @@ def verificar_exist_pro_div(div):
     except:
         return False
 
+
 def verificar_exist_pro_tipo(tipo):
     try:
         if Processo.objects.get(tipo_processo=busca_tipo(tipo)):
             return True
     except:
         return False
+
 
 def verificar_exist_div(div):
     try:
@@ -92,6 +94,7 @@ def verificar_exist_tipo(tipo):
                 return True
     except:
         return False
+
 
 def editar_divisao(div_ant, new):
     div_ant.nome_divisao = new.nome_divisao
