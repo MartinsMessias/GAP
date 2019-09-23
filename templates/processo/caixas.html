@@ -1,12 +1,26 @@
-{% for key, value in caixas.items %}
-    --------------------------------------
-    <br>
-    CAIXA: {{ key }}
-    <br>
-    --------------------------------------
-    <br>
-    {% for ky in value %}
-        {{ ky.nome_parte_processo }}
-        <br>
-    {% endfor %}
-{% endfor %}
+{% extends 'processo/base.html' %}
+{% block content %}
+    <hr>
+    <hr>
+    <div class="row">
+        {% for key, value in caixas.items %}
+            <div class="col-xl-3 col-sm-6 mb-3">
+                <div class="card text-white bg-secondary o-hidden h-100">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fas fa-fw fa-folder-open"></i>
+                        </div>
+                        <div class="mr-5">{{ key }}</div>
+                    </div>
+                    {% for ky in value %}
+                        <a class="card-footer text-white clearfix small z-1" href="#">
+                            <p>{{ ky.nome_parte_processo }} - {{ ky.numero_processo }}</p>
+                            <p>{{ ky.data_abertura_processo }}</p>
+                        </a>
+                    {% endfor %}
+                    <hr>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

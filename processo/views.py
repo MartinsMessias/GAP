@@ -268,11 +268,10 @@ def cadastrar_tipo(request):
 
 
 
-# @login_required
+@login_required
 def caixas(request):
     caixas = {}
     numeros = Processo.objects.only('numero_caixa_processo')
     for numero in numeros:
         caixas[str(numero)] = Processo.objects.filter(numero_caixa_processo=str(numero))
-    print(caixas)
     return render(request, 'processo/caixas.html', {'caixas':caixas})
