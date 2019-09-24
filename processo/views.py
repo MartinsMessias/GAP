@@ -3,7 +3,7 @@ import os
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import *
+from django.contrib.auth.decorators import login_required
 
 from GProcessos import settings
 from .forms import *
