@@ -18,7 +18,7 @@ MEDIA_ROOT = (
 
 MEDIA_URL = '/userfiles/'  # endereço para acessar os arquivos
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Quick-start development settings - unsuitable for production
