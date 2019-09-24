@@ -1,7 +1,6 @@
 {% extends 'processo/base.html' %}
 {% block content %}
     <hr>
-    <hr>
     <div class="container-fluid">
         {% for key, value in caixas.items %}
             <h1><div class="fa fa-archive" style="color: #0c2b44;"></div> Caixa n°{{ key }}</h1>
@@ -31,6 +30,24 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Excluir Modal-->
+                    <div class="modal fade" id="excluirModal{{ ky.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title" id="exampleModalLabel">Atenção!!!</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">Deseja realmente excluir esse processo?</div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                    <a class="btn btn-primary" href="/excluir/{{ ky.id }}">Excluir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </table>
             </div>
