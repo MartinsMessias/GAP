@@ -17,10 +17,12 @@ def accounts(request):
     return HttpResponse(404)
 
 
+@login_required
 def login(request):
     return render(request, 'registration/login.html')
 
 
+@login_required
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
 
@@ -31,6 +33,7 @@ def index(request):
     return render(request, 'processo/index.html', {'dados': dados})
 
 
+@login_required
 def cadastrar(request):
     if request.method == 'POST':
         form = ProcessoForm(request.POST, request.FILES)
@@ -74,6 +77,7 @@ def cadastrar(request):
         return render(request, 'processo/cadastrar.html', {'form': form})
 
 
+@login_required
 def excluir(request, id):
     proc_services.remover_processo(proc_services.busca_processo(id))
     messages.info(request, 'Processo removido!')
@@ -81,6 +85,7 @@ def excluir(request, id):
     return redirect(index)
 
 
+@login_required
 def editar(request, id):
     processo_ant = proc_services.busca_processo(id)
     form = ProcessoForm(request.POST or None, request.FILES or None, instance=processo_ant)
@@ -110,6 +115,7 @@ def editar(request, id):
     return render(request, 'processo/editar.html', {'form': form})
 
 
+@login_required
 def divisao(request):
     dados = Divisao.objects.all()
 
@@ -120,6 +126,7 @@ def divisao(request):
     return render(request, 'processo/divisoes.html', {'dados': dados})
 
 
+@login_required
 def editar_divisao(request, id):
     div_ant = proc_services.busca_div(id)
     form = DivisaoForm(request.POST or None, request.FILES or None, instance=div_ant)
@@ -142,6 +149,7 @@ def editar_divisao(request, id):
     return render(request, 'processo/editar_div.html', {'form': form})
 
 
+@login_required
 def excluir_div(request, id):
     if proc_services.verificar_exist_pro_div(proc_services.busca_div(id)):
         messages.warning(request, 'Você não pode remover essa divisão! Ela contém processos cadastrados!')
@@ -154,6 +162,7 @@ def excluir_div(request, id):
     return redirect(divisao)
 
 
+@login_required
 def cadastrar_div(request):
     if request.method == 'POST':
         form = DivisaoForm(request.POST, request.FILES)
@@ -182,6 +191,7 @@ def cadastrar_div(request):
         return render(request, 'processo/editar_div.html', {'form': form})
 
 
+@login_required
 def tipo(request):
     dados = TipoDeProcesso.objects.all()
 
@@ -192,6 +202,7 @@ def tipo(request):
     return render(request, 'processo/tipos.html', {'dados': dados})
 
 
+@login_required
 def editar_tipo(request, id):
     tipo_ant = proc_services.busca_tipo(id)
     form = TipoForm(request.POST or None, request.FILES or None, instance=tipo_ant)
@@ -214,6 +225,7 @@ def editar_tipo(request, id):
     return render(request, 'processo/editar_tipo.html', {'form': form})
 
 
+@login_required
 def excluir_tipo(request, id):
     if proc_services.verificar_exist_pro_tipo(id):
         messages.warning(request, 'Você não pode remover esse tipo! Ela contém processos cadastrados!')
@@ -226,6 +238,7 @@ def excluir_tipo(request, id):
     return redirect(tipo)
 
 
+@login_required
 def cadastrar_tipo(request):
     if request.method == 'POST':
         form = TipoForm(request.POST, request.FILES)
@@ -255,6 +268,7 @@ def cadastrar_tipo(request):
 
 
 
+@login_required
 def caixas(request):
     caixas = {}
     numeros = Processo.objects.only('numero_caixa_processo')
