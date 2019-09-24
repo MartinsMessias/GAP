@@ -28,9 +28,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['gprocessos.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

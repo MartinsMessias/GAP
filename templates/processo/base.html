@@ -55,8 +55,6 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 {% if user.is_authenticated %}
                     <p class="dropdown-item">Usuário: <span class="text-secondary">{{ user.username }}</span></p>
-                    {% else %}
-                        <meta http-equiv="REFRESH" content="0;url={% url 'login' %}">
                 {% endif %}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Deslogar</a>
