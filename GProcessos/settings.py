@@ -13,8 +13,16 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 from django.core.management.utils import get_random_secret_key
 
+try:
+    import django_heroku
+    import dj_database_url
+except ModuleNotFoundError:
+    pass
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 MEDIA_ROOT = (
     os.path.join(BASE_DIR, "userfiles")  # pasta media para abrigar os arquivos dos usuários
@@ -72,7 +80,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        'libraries': {
+            'libraries': {
                 'tags': 'templatetags.tags'},
         },
     },
@@ -128,3 +136,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# Change 'default' database configuration with $DATABASE_URL.
+try:
+    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+    # Simplified static file serving.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+except:
+    pass
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+try:
+    # Activate Django-Heroku.
+    django_heroku.settings(locals())
+except:
+    pass
