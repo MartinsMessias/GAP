@@ -2,25 +2,42 @@
 {% block content %}
     <hr>
     <hr>
-    <div class="row">
+    <div class="container">
         {% for key, value in caixas.items %}
-            <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-secondary o-hidden h-100">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fas fa-fw fa-folder-open"></i>
-                        </div>
-                        <div class="mr-5">{{ key }}</div>
-                    </div>
+            <div class="fa fa-archive"></div>
+            <h1>Caixa n°{{ key }}</h1>
+            <div class="table table-bordered">
+                <table width="100%;">
+                    <tr><th>Nome da parte</th><th>N° Processo</th></tr>
                     {% for ky in value %}
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <p>{{ ky.nome_parte_processo }} - {{ ky.numero_processo }}</p>
-                            <p>{{ ky.data_abertura_processo }}</p>
-                        </a>
+                        <tr><td valign="top"><a href="#" data-toggle="modal" data-target="#exibirModal{{ ky.id }}">{{ ky.nome_parte_processo }}</a></td><td>{{ ky.numero_processo }}</td></tr>
+                        <!-- Exibir Modal-->
+                        <div class="modal fade" id="exibirModal{{ ky.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{ ky.nome_parte_processo }} / {{ ky.numero_processo }}</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% include 'processo/exibir.html' with form=ky %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#excluirModal{{ ky.id }}">Excluir</a>
+                                        <a class="btn btn-info" href="{% url 'editar' ky.id %}">Editar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endfor %}
-                    <hr>
-                </div>
+                </table>
             </div>
+
+
         {% endfor %}
     </div>
+
 {% endblock %}
