@@ -17,7 +17,6 @@ def accounts(request):
     return HttpResponse(404)
 
 
-@login_required
 def login(request):
     return render(request, 'registration/login.html')
 
