@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
                   path('login/', views.login, name='login'),
-                  path('', views.index, name='index'),
+                  path('/', views.index, name='index'),
                   path('divisao/', views.divisao, name='divisao'),
                   path('editar_divisao/<str:id>', views.editar_divisao, name='editar_divisao'),
                   path('excluir_div/<str:id>', views.excluir_div, name='excluir_divisao'),
