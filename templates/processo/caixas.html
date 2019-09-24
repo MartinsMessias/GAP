@@ -7,9 +7,9 @@
             <h1><div class="fa fa-archive" style="color: #0c2b44;"></div> Caixa n°{{ key }}</h1>
             <div class="table table-bordered">
                 <table width="100%;">
-                    <tr><th>N° Processo</th><th>N° Protocolo</th><th>Nome da parte</th></tr>
+                    <tr><th>N° Processo</th><th>N° Protocolo</th><th>Nome da parte</th><th>Última modificação</th></tr>
                     {% for ky in value %}
-                        <tr><td>{{ ky.numero_processo }}</td><td>{{ ky.protocolo_processo }}</td><td valign="top"><a href="#" data-toggle="modal" data-target="#exibirModal{{ ky.id }}">{{ ky.nome_parte_processo }}</a></td></tr>
+                        <td>{{ ky.numero_processo }}</td><td>{{ ky.protocolo_processo }}</td><td valign="top"><a href="#" data-toggle="modal" data-target="#exibirModal{{ ky.id }}">{{ ky.nome_parte_processo }}</a></td><td>{{ ky.modificacao_registro }}</td></tr>
                         <!-- Exibir Modal-->
                         <div class="modal fade" id="exibirModal{{ ky.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
