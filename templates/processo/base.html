@@ -1,3 +1,4 @@
+{% if user.is_authenticated %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -230,3 +231,6 @@
 </body>
 
 </html>
+    {% else %}
+        <meta http-equiv="REFRESH" content="0;url={% url 'login' %}">
+{% endif%}
