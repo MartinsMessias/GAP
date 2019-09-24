@@ -31,7 +31,7 @@
                 {% for dado in dados %}
                     <tr>
                         <td>{{ dado.numero_processo }}</td>
-                        <td>{{ dado.nome_parte_processo }}</td>
+                        <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}"><td>{{ dado.nome_parte_processo }}</td></a>
                         <td>{{ dado.assunto_processo }}</td>
                         <td>{{ dado.data_abertura_processo }}</td>
                         <td>{{ dado.numero_caixa_processo }}</td>
