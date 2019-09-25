@@ -1,11 +1,8 @@
 import os
 from django.core.management.utils import get_random_secret_key
 
-try:
-    import django_heroku
-    import dj_database_url
-except ModuleNotFoundError:
-    pass
+import django_heroku
+import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -18,7 +15,7 @@ MEDIA_ROOT = (
 
 MEDIA_URL = '/userfiles/'  # endereço para acessar os arquivos
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +25,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['gprocessos.herokuapp.com']
 
 # Application definition
 
@@ -126,12 +123,11 @@ STATICFILES_DIRS = (
 )
 
 # Change 'default' database configuration with $DATABASE_URL.
-try:
-    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
-    # Simplified static file serving.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-except:
-    pass
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+# Simplified static file serving.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
