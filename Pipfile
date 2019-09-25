@@ -12,5 +12,7 @@ python_version = "3.6"
 psycopg2-binary = "*"
 django-heroku = "*"
 gunicorn = "*"
+dj_database_url = "*"
+
 
 [dev-packages]
