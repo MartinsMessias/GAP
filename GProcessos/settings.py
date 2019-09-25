@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'GProcessos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'de33j03gardf8s',
+        'USER': 'fwkbxzlfvojelo',
+        'PASSWORD': '84578071fde151f4fe5a9917bb93bdf8036dd19c30d3a30144a61b327a8757ec',
+        'HOST': 'ec2-54-235-86-101.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -125,19 +129,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-# Change 'default' database configuration with $DATABASE_URL.
-try:
-    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
-    # Simplified static file serving.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-except:
-    pass
+# Simplified static file serving.
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-
-
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
