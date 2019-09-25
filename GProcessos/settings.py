@@ -1,8 +1,11 @@
 import os
 from django.core.management.utils import get_random_secret_key
 
-import django_heroku
-import dj_database_url
+try:
+    import django_heroku
+    import dj_database_url
+except ModuleNotFoundError:
+    pass
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,9 +28,9 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['gprocessos.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -123,19 +126,18 @@ STATICFILES_DIRS = (
 )
 
 # Change 'default' database configuration with $DATABASE_URL.
-
-DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
-# Simplified static file serving.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+try:
+    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+    # Simplified static file serving.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+except:
+    pass
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
-try:
-    # Activate Django-Heroku.
-    django_heroku.settings(locals())
-except:
-    pass
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
