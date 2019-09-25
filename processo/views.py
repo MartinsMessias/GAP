@@ -11,7 +11,7 @@ from .models import *
 from .entitys import processo
 from .services import proc_services
 
-
+@login_required
 def accounts(request):
     return HttpResponse(404)
 
@@ -20,7 +20,7 @@ def login(request):
     return render(request, 'registration/login.html')
 
 
-@login_required(login_url='/accounts/login')
+@login_required
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
 
