@@ -12,16 +12,15 @@ from .entitys import processo
 from .services import proc_services
 
 
-@login_required
 def accounts(request):
     return HttpResponse(404)
 
-
+@login_required
 def login(request):
     return render(request, 'registration/login.html')
 
 
-@login_required
+@login_required(login_url='/accounts/login')
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
 
