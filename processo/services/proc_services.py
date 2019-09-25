@@ -20,8 +20,10 @@ def busca_processo(id):
 
 def remover_processo(processo):
     processo.delete()
-    os.remove(os.path.join(settings.MEDIA_ROOT, processo.arquivo_processo.name))
-
+    try:
+        os.remove(os.path.join(settings.MEDIA_ROOT, processo.arquivo_processo.name))
+    except FileNotFoundError:
+        pass
 
 def editar_processo(processo_ant, new):
     processo_ant.numero_processo = new.numero_processo
