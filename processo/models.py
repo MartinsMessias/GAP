@@ -17,11 +17,9 @@ class TipoDeProcesso(models.Model):
 
 
 def user_directory_path(instance, filename):
-    # O arquivo vai ser carregado para MEDIA_ROOT/processos/<divisao>/<tipo>/<num_caixa>/...
-    return 'processos/{0}/{1}/{2}/'.format(instance.divisao_processo,
-                                              instance.numero_caixa_processo,
-                                              filename)
-
+    return 'processos/{0}/{1}/{2}'.format(instance.divisao_processo,
+                                          instance.numero_caixa_processo,
+                                          str(filename).replace(" ", "_"))
 
 class Processo(models.Model):
     numero_processo = models.CharField(max_length=100, blank=False, null=False)
