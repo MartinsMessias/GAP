@@ -1,22 +1,15 @@
 import os
 from django.core.management.utils import get_random_secret_key
 
-try:
-    import whitenoise
-    import django_heroku
-    import dj_database_url
-except ModuleNotFoundError:
-    pass
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-MEDIA_ROOT = (
-    os.path.join(BASE_DIR, "userfiles")  # pasta media para abrigar os arquivos dos usuários
-)
-
-MEDIA_URL = '/userfiles/'  # endereço para acessar os arquivos
+# STATIC_ROOT = os.path.join(BASE_DIR, "/static/")
+# MEDIA_ROOT = (
+#     os.path.join(BASE_DIR, "userfiles")
+# )
+#
+MEDIA_URL = '/userfiles/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
@@ -28,7 +21,7 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -121,18 +114,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
 
 # Simplified static file serving.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-try:
-    # Activate Django-Heroku.
-    django_heroku.settings(locals())
-except:
-    pass
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+DEFAULT_CHARSET = 'utf-8'
