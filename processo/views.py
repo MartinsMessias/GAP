@@ -1,7 +1,10 @@
 import os
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -10,6 +13,17 @@ from .forms import *
 from .models import *
 from .entitys import processo
 from .services import proc_services
+
+def gerar_relat(request):
+    buffer = io.BytesIO()
+    width, height = A4
+    p = canvas.Canvas(buffer)
+    #text =
+    p.drawString(100, 100, "Hello world.")
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
 
 @login_required
 def accounts(request):
