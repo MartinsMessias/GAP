@@ -40,7 +40,7 @@ Gestor de Processos de Arquivo | Python 3.6 + Django 2.2
 ### Criando um projeto
 #### Dentro da pasta /var/www/env/ crie uma pasta “src”
 
-`sudo mkdir env/src && cd src`
+`sudo mkdir env/src && cd env/src`
 
 Baixando o projeto direto do Github
 
