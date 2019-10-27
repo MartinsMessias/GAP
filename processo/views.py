@@ -1,5 +1,7 @@
 import os
 import io
+
+from django.db.models import Sum
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 
@@ -37,11 +39,12 @@ def login(request):
 @login_required
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
+    # = Processo.objects.aggregate(sum_caixas=Sum('numero_caixa_processo')).get('sum_caixas')
     if not dados:
         messages.info(request, 'Nenhum processo foi encontrado!')
         return render(request, 'processo/index.html')
 
-    return render(request, 'processo/index.html', {'dados': dados})
+    return render(request, 'processo/index.html', {'dados': dados, 'ls':lista_registros})
 
 
 @login_required
