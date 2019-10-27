@@ -18,12 +18,12 @@ def gerar_relat(request):
     buffer = io.BytesIO()
     width, height = A4
     p = canvas.Canvas(buffer)
-    #text =
-    p.drawString(100, 100, "Hello world.")
+    text = str(Processo.objects.all().count())
+    p.drawString(100, 100, text)
     p.showPage()
     p.save()
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    return FileResponse(buffer, as_attachment=True, filename='relatorio.pdf')
 
 @login_required
 def accounts(request):
@@ -37,7 +37,6 @@ def login(request):
 @login_required
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
-
     if not dados:
         messages.info(request, 'Nenhum processo foi encontrado!')
         return render(request, 'processo/index.html')
