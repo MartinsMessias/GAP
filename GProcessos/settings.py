@@ -1,5 +1,6 @@
 import os
-#import whitenoise
+import whitenoise
+import django-heroku
 from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -125,3 +126,5 @@ STATIC_URL = '/static/'
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEFAULT_CHARSET = 'utf-8'
+
+django_heroku.settings(locals())
