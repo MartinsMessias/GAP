@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .services import proc_services
+import string
+import random
 
 class Divisao(models.Model):
     nome_divisao = models.CharField(max_length=250, blank=False, null=False)
@@ -16,10 +17,15 @@ class TipoDeProcesso(models.Model):
         return self.nome_tipo
 
 
+# INICIO G A M B
+def getfilename(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
 def user_directory_path(instance, filename):
     return 'processos/{0}/{1}/{2}'.format(instance.divisao_processo,
-                                          instance.numero_caixa_processo,
-                                          str(filename).replace(" ", "_")+proc_services.randomString(10))
+                                          instance.numero_caixa_processo, getfilename()+str(filename).replace(" ", "_"))
+# FIM I A R R A
+
 
 class Processo(models.Model):
     numero_processo = models.CharField(max_length=100, blank=False, null=False)
