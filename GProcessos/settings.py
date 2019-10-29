@@ -1,6 +1,12 @@
 import os
-import whitenoise
-import django-heroku
+
+try:
+    import django_heroku
+    import dj_database_url
+    import whitenoise
+except ModuleNotFoundError:
+    pass
+
 from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -127,4 +133,8 @@ STATIC_URL = '/static/'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 DEFAULT_CHARSET = 'utf-8'
 
-django_heroku.settings(locals())
+try:
+    # Activate Django-Heroku.
+    django_heroku.settings(locals())
+except:
+    pass
