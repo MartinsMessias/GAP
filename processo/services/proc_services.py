@@ -1,4 +1,6 @@
 import os
+import random
+import string
 
 from GProcessos import settings
 from ..models import *
@@ -11,7 +13,11 @@ def cadastrar_processo(new):
         data_abertura_processo=new.data_abertura_processo, numero_caixa_processo=new.numero_caixa_processo,
         divisao_processo=new.divisao_processo, tipo_processo=new.tipo_processo, arquivo_processo=new.arquivo_processo
     )
-
+    # div = new.divisao_processo
+    # path = os.path.join(settings.MEDIA_ROOT, 'processos', div, 'index.html')
+    # f = open(path, "w+b")
+    # f.write('HI')
+    # f.close()
 
 def busca_processo(id):
     processo = Processo.objects.get(id=id)
@@ -132,3 +138,7 @@ def remover_tipo(tipo):
 
 def cadastrar_tipo(new):
     TipoDeProcesso.objects.create(nome_tipo=new.nome_tipo)
+
+def randomString(stringLength=10):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))

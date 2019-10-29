@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
@@ -19,5 +18,5 @@ urlpatterns = [
                   path('editar/<str:id>', views.editar, name='editar'),
                   path('caixas/', views.caixas, name='caixas'),
                   path('excluir/<str:id>', views.excluir, name='excluir'),
-                  path('accounts/', views.accounts, name='accounts')
+                  path('accounts/', views.accounts, name='accounts'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

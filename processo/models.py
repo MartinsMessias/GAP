@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from .services import proc_services
 
 class Divisao(models.Model):
     nome_divisao = models.CharField(max_length=250, blank=False, null=False)
@@ -19,7 +19,7 @@ class TipoDeProcesso(models.Model):
 def user_directory_path(instance, filename):
     return 'processos/{0}/{1}/{2}'.format(instance.divisao_processo,
                                           instance.numero_caixa_processo,
-                                          str(filename).replace(" ", "_"))
+                                          str(filename).replace(" ", "_")+proc_services.randomString(10))
 
 class Processo(models.Model):
     numero_processo = models.CharField(max_length=100, blank=False, null=False)
