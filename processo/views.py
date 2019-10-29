@@ -1,10 +1,5 @@
 import os
 import io
-
-from django.db.models import Sum
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -15,17 +10,6 @@ from .forms import *
 from .models import *
 from .entitys import processo
 from .services import proc_services
-
-def gerar_relat(request):
-    buffer = io.BytesIO()
-    width, height = A4
-    p = canvas.Canvas(buffer)
-    text = str(Processo.objects.all().count())
-    p.drawString(100, 100, text)
-    p.showPage()
-    p.save()
-    buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='relatorio.pdf')
 
 @login_required
 def accounts(request):
@@ -39,12 +23,12 @@ def login(request):
 @login_required
 def index(request):
     dados = Processo.objects.all().order_by('criacao_registro')
-    # = Processo.objects.aggregate(sum_caixas=Sum('numero_caixa_processo')).get('sum_caixas')
+
     if not dados:
         messages.info(request, 'Nenhum processo foi encontrado!')
         return render(request, 'processo/index.html')
 
-    return render(request, 'processo/index.html', {'dados': dados, 'ls':lista_registros})
+    return render(request, 'processo/index.html', {'dados': dados})
 
 
 @login_required
