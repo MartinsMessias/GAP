@@ -4,7 +4,7 @@ try:
     import django_heroku
     import dj_database_url
     import whitenoise
-except ModuleNotFoundError:
+except:
     pass
 
 from django.core.management.utils import get_random_secret_key
