@@ -25,7 +25,7 @@ const banner = ['/*!\n',
   '\n'
 ].join('');
 
-// BrowserSync
+// BrowserSync ALT
 function browserSync(done) {
   browsersync.init({
     server: {
