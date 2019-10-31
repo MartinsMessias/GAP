@@ -1,6 +1,7 @@
 import os
 import io
 from django.contrib import messages
+from django.views.static import serve
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -11,9 +12,11 @@ from .models import *
 from .entitys import processo
 from .services import proc_services
 
+
 @login_required
 def accounts(request):
     return HttpResponse(404)
+
 
 @login_required
 def login(request):
@@ -265,6 +268,11 @@ def cadastrar_tipo(request):
         return render(request, 'processo/editar_tipo.html', {'form': form})
 
 
+def arquivos(request, path):
+    # permitido = True
+    # if request.user.is_authenticated() and (request.user.is_staff or permitido):
+    return serve(request, path, settings.MEDIA_ROOT)
+
 
 @login_required
 def caixas(request):
@@ -272,4 +280,4 @@ def caixas(request):
     numeros = Processo.objects.only('numero_caixa_processo')
     for numero in numeros:
         caixas[str(numero)] = Processo.objects.filter(numero_caixa_processo=str(numero))
-    return render(request, 'processo/caixas.html', {'caixas':caixas})
+    return render(request, 'processo/caixas.html', {'caixas': caixas})
