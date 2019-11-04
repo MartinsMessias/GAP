@@ -268,12 +268,6 @@ def cadastrar_tipo(request):
         return render(request, 'processo/editar_tipo.html', {'form': form})
 
 
-def arquivos(request, path):
-    # permitido = True
-    # if request.user.is_authenticated() and (request.user.is_staff or permitido):
-    return serve(request, path, settings.MEDIA_ROOT)
-
-
 @login_required
 def caixas(request):
     caixas = {}
