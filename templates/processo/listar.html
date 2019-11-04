@@ -36,9 +36,9 @@
                         <td>{{ dado.data_abertura_processo }}</td>
                         <td>{{ dado.numero_caixa_processo }}</td>
                         <td>
-                            <a href="{% url 'editar' dado.id %}">Editar</a>
-                            <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}">Excluir</a>
-                            <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}">Exibir</a>
+                            <a href="{% url 'editar' dado.id %}" title="Editar" class="card-header"> <i class="fas fa-fw fa-pencil-alt"></i></a>
+                            <a href="#" data-toggle="modal" data-target="#excluirModal{{ dado.id }}" title="Excluir" class="card-header"> <i class="fas fa-fw fa-trash-alt"></i></a>
+                            <a href="#" data-toggle="modal" data-target="#exibirModal{{ dado.id }}" class="card-header">Exibir</a>
                         </td>
                     </tr>
                     <!-- Exibir Modal-->
