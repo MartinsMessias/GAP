@@ -11,6 +11,12 @@ class Divisao(models.Model):
 
 
 class TipoDeProcesso(models.Model):
+    TIPOS = (('Aposentadoria voluntária', 'Aposentadoria voluntária'),
+             ('Aposentadoria por tempo de contribuição', 'Aposentadoria por tempo de contribuição'),
+             ('Aposentadoria por idade', 'Aposentadoria por idade'),
+             ('Aposentadoria compulsória', 'Aposentadoria compulsória'),
+             ('Aposentadoria por invalidez', 'Aposentadoria por invalidez'),
+             ('Abono de permanência', 'Abono de permanência'))
     nome_tipo = models.CharField(max_length=120, blank=False, null=False)
 
     def __str__(self):

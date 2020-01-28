@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GPro - PAINEL</title>
+    <title>GAP - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
@@ -31,7 +31,7 @@
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
-    <a class="navbar-brand mr-1" href="/">Gestão de Arquivo</a>
+    <a class="navbar-brand mr-1" href="/">GAP</a>
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -78,7 +78,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'cadastrar' %}">
                 <i class="fas fa-fw fa-plus"></i>
-                <span>Cadastrar Processo</span></a>
+                <span>Cadastrar Arquivo</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'cadastrar_div' %}">
@@ -88,7 +88,8 @@
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'cadastrar_tipo' %}">
                 <i class="fas fa-fw fa-plus"></i>
-                <span>Cadastrar Tipo de Processo</span></a>
+                <span>Cadastrar Tipo de Arquivo</span>
+            </a>
         </li>
     </ul>
     <!-- End of Sidebar -->
@@ -122,13 +123,13 @@
                             <div class="card-body-icon">
                                 <i class="fas fa-fw fa-file"></i>
                             </div>
-                            <div class="mr-5">Processos</div>
+                            <div class="mr-5">Arquivos</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="{% url 'index' %}">
                             <span class="float-left"></span>
                             <span class="float-right">
-          <i class="fas fa-angle-right"></i>
-        </span>
+                            <i class="fas fa-angle-right"></i>
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -138,7 +139,7 @@
                             <div class="card-body-icon">
                                 <i class="fas fa-fw fa-list"></i>
                             </div>
-                            <div class="mr-5">Divisões</div>
+                            <div class="mr-5">Diretorias</div>
                         </div>
                         <a class="card-footer text-white clearfix small z-1" href="{% url 'divisao' %}">
                             <span class="float-left"></span>
@@ -161,22 +162,6 @@
                             <span class="float-right">
           <i class="fas fa-angle-right"></i>
         </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
-                    <div class="card text-white bg-danger o-hidden h-100">
-                        <div class="card-body">
-                            <div class="card-body-icon">
-                                <i class="fas fa-fw fa-folder-open"></i>
-                            </div>
-                            <div class="mr-5">Tipos de Processos</div>
-                        </div>
-                        <a class="card-footer text-white clearfix small z-1" href="{% url 'tipo' %}">
-                            <span class="float-left"></span>
-                            <span class="float-right">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
                         </a>
                     </div>
                 </div>

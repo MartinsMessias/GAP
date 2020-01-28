@@ -6,7 +6,7 @@
             <h1><div class="fa fa-archive" style="color: #0c2b44;"></div> Caixa n°{{ key }}</h1>
             <div class="table table-bordered">
                 <table width="100%;">
-                    <tr><th>N° Processo</th><th>N° Protocolo</th><th>Nome da parte</th><th>Última modificação</th></tr>
+                    <tr><th>N° Arquivo</th><th>N° Protocolo</th><th>Nome da parte</th><th>Última modificação</th></tr>
                     {% for ky in value %}
                         <td>{{ ky.numero_processo }}</td><td>{{ ky.protocolo_processo }}</td><td valign="top"><a href="#" data-toggle="modal" data-target="#exibirModal{{ ky.id }}">{{ ky.nome_parte_processo }}</a></td><td>{{ ky.modificacao_registro }}</td></tr>
                         <!-- Exibir Modal-->
