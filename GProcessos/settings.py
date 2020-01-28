@@ -21,7 +21,7 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ['KEY']
+SECRET_KEY = '%64s$^r#ut)q1d@tq=jg*2fta4keohn493hc8m3gpk0%%k8ddz' #os.environ['KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

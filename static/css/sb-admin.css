@@ -7028,10 +7028,13 @@ a.close.disabled {
 /*  background-color: #343a40 !important;*/
 /*}*/
 
-/*.bg-dark-op {*/
-/*  background-image: url('../img/geometry.png');*/
-/*  background-size: cover;*/
-/*}*/
+.bg-dark-op {
+  background-image: url('../img/logo01.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
 
 
 

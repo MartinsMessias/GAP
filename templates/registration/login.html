@@ -1,94 +1,83 @@
 {% load static %}
 {% load tags %}
-
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>GSPro Login</title>
-    <!-- Custom fonts for this template-->
-    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <!-- Custom styles for this template-->
-</head>
-<body class="bg-info">
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top" >
-    <a class="navbar-brand mr-1" href="{% url 'login' %}">GAP | Instituto de Previdência do Município de Rio Branco - RBPREV </a>
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-        </li>
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Deslogar</a>
-            </div>
-        </li>
-    </ul>
-</nav>
-<div class="container">
-    <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
-        <div class="card-body">
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <!--<input type="text" id="inputUser" class="form-control" placeholder="Usuário" required="required" autofocus="autofocus">-->
-                        {{ form.username | addclass:'form-control' }}
-                        <label for="inputUser">Usuário</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <!--<input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="required">-->
-                        {{ form.password | addclass:'form-control' }}
-                        <label for="inputPassword">Senha</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="Relembre-me">
-                            Relembre-me
-                        </label>
-                    </div>
-                </div>
-                <input class="btn btn-primary btn-block" type="submit" value="Entrar">
-            </form>
-            <div class="text-center">
-                <a class="d-block small" href="{% url 'password_change' %}">Esqueceu a senha?</a>
-                {% if form.errors %}
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap core JavaScript-->
-<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- Core plugin JavaScript-->
-<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>GAP Login</title>
+		<!-- Custom fonts for this template-->
+		<link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+		<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+		<!-- Custom styles for this template-->
+        <link rel="shortcut icon" href="../../static/img/archive.png">
+	</head>
+	<body class="bg-info">
+		<nav class="navbar navbar-nav navbar-dark bg-dark static-top">
+			<a class="navbar-brand mr-1" href="{% url 'login' %}">GAP - Gestão de Arquivo Previdenciário</a>
+			<!-- Navbar -->
+		</nav>
+		<div class="container" align="center">
+			<img src="../../static/img/logo.png" class="img-thumbnail bg-light mt-5" width="160px;">
+		</div>
+		<div class="container">
+			<div class="card card-login mx-auto mt-5 bg-light">
+				<div class="card-header"></div>
+				<div class="card-body">
+					<form action="" method="post">
+						{% csrf_token %}
+						<div class="form-group">
+							<div class="form-label-group">
+								<!--<input type="text" id="inputUser" class="form-control" placeholder="Usuário" required="required" autofocus="autofocus">-->
+								{{ form.username | addclass:'form-control' }}
+								<label for="inputUser">Usuário</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-label-group">
+								<!--<input type="password" id="inputPassword" class="form-control" placeholder="Senha" required="required">-->
+								{{ form.password | addclass:'form-control' }}
+								<label for="inputPassword">Senha</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+								<input type="checkbox" value="Relembre-me">
+								Relembre-me
+								</label>
+							</div>
+						</div>
+						<input class="btn btn-primary btn-block" type="submit" value="Entrar">
+					</form>
+					<div class="text-center">
+						<a class="d-block small" href="{% url 'password_change' %}">Esqueceu a senha?</a>
+						{% if form.errors %}
+						{% for field in form %}
+						{% for error in field.errors %}
+						<div class="alert alert-danger">
+							<strong>{{ error|escape }}</strong>
+						</div>
+						{% endfor %}
+						{% endfor %}
+						{% for error in form.non_field_errors %}
+						<div class="alert alert-danger">
+							<strong>{{ error|escape }}</strong>
+						</div>
+						{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript-->
+		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		<!-- Core plugin JavaScript-->
+		<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+	</body>
 </html>
